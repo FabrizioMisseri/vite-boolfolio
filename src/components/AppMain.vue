@@ -1,12 +1,18 @@
 <script>
 import axios from "axios";
+import CardProject from "./CardProject.vue";
 
 export default {
     name: 'AppMain',
 
+    components: {
+        CardProject,
+    },
+
     data() {
         return {
             apiUrlProjects: 'http://127.0.0.1:8000/api/projects',
+            projectsArray: [],
         }
     },
 
@@ -18,8 +24,8 @@ export default {
         getProjects() {
             axios.get(this.apiUrlProjects).then(resp => {
                 // console.log(resp);
-                const data = resp.data.results;
-                return data;
+                this.projectsArray = resp.data.results;
+                console.log(this.projectsArray);
             })
         },
     }
@@ -27,9 +33,13 @@ export default {
 </script>
 
 <template>
+    <div class="container">
+        <div class="row">
 
-    ciao
-    ciao
+            <CardProject v-for="(project, index) in projectsArray" :project="project" :key="index" />
+
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
