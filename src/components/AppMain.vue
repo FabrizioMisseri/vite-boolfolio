@@ -29,6 +29,7 @@ export default {
 <template>
 
     ciao
+    ciao
 </template>
 
 <style lang="scss" scoped>
