@@ -12,6 +12,10 @@ export default {
                     label: 'About-us',
                     routeName: 'about-us'
                 },
+                {
+                    label: 'Projects',
+                    routeName: 'projects'
+                },
             ]
         }
     }
@@ -20,9 +24,10 @@ export default {
 
 <template>
     <header>
-        <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary text-white">
+        <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand text-primary text-white">BoolFolio</a>
+                <router-link :to="{ name: navigation[0].routeName }"
+                    class="navbar-brand text-primary text-white">BoolFolio</router-link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +36,7 @@ export default {
             </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item" v-for="(navItem, index) in navigation" :key="index">
+                    <li class="nav-item text-white" v-for="(navItem, index) in navigation" :key="index">
                         <router-link :to="{ name: navItem.routeName }" class="nav-link" aria-current="page">{{
                             navItem.label
                         }}</router-link>
@@ -46,5 +51,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-
+a {
+    color: inherit;
+}
 </style>

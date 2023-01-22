@@ -1,9 +1,9 @@
 <script>
 import axios from "axios";
-import CardProject from "./CardProject.vue";
+import CardProject from "../components/CardProject.vue";
 
 export default {
-    name: 'AppMain',
+    name: 'Projects',
 
     components: {
         CardProject,
@@ -25,7 +25,7 @@ export default {
             axios.get(this.apiUrlProjects).then(resp => {
                 // console.log(resp);
                 this.projectsArray = resp.data.results;
-                console.log(this.projectsArray);
+                // console.log(this.projectsArray);
             })
         },
     }
@@ -33,15 +33,21 @@ export default {
 </script>
 
 <template>
-    <div class="container">
-        <div class="row">
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
 
-            <CardProject v-for="(project, index) in projectsArray" :project="project" :key="index" />
+                <CardProject v-for="(project, index) in projectsArray" :project="project" :key="index" />
 
+            </div>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-
+.wrapper {
+    background-color: rgb(142, 142, 255);
+    width: 100%;
+    height: 100%;
+}
 </style>
