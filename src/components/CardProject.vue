@@ -1,4 +1,5 @@
 <script>
+import { store } from '../store';
 
 export default {
     name: 'CardProject',
@@ -9,7 +10,7 @@ export default {
 
     data() {
         return {
-
+            store,
         }
     },
 
@@ -50,8 +51,13 @@ export default {
             </div>
 
             <figure v-if="project.cover_image">
-                <img :src="`http://127.0.0.1:8000/storage/${project.cover_image}`" alt="">
+                <img :src="`${this.store.apiBase}/storage/${project.cover_image}`" alt="">
             </figure>
+
+            <div class="btn btn-primary mt-3 text-white">
+                <RouterLink :to="{ name: 'single-project', params: { slug: project.slug } }" class="router-btn">Go to
+                    Project</RouterLink>
+            </div>
 
         </div>
     </div>
@@ -62,6 +68,11 @@ export default {
 .card {
     img {
         max-width: 100%;
+    }
+
+    .router-btn {
+        color: inherit;
+        text-decoration: none;
     }
 }
 </style>
